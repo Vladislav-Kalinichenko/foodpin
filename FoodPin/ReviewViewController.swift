@@ -14,6 +14,8 @@ class ReviewViewController: UIViewController {
     @IBOutlet var containerView: UIView!
     @IBOutlet var restaurantImageRating: UIImageView!
     
+    @IBOutlet weak var crossButton: UIButton!
+    
     var restaurant: Restaurant!
     
     override func viewDidLoad() {
@@ -28,21 +30,23 @@ class ReviewViewController: UIViewController {
         backgroundImageView.addSubview(blurEffectView)
         
         
+        // Do any additional setup after loading the view.
         let scaleTransform = CGAffineTransform.init(scaleX: 0, y: 0)
         let translateTransform = CGAffineTransform.init(translationX: 0, y: -1000)
         let combineTransform = scaleTransform.concatenating(translateTransform)
         containerView.transform = combineTransform
+        let closeButtonAnimation = CGAffineTransform.init(translationX: 1000, y: 0)
+        crossButton.transform = closeButtonAnimation
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.containerView.transform = CGAffineTransform.identity
-//        })
         
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
         self.containerView.transform = CGAffineTransform.identity
+        }, completion: nil)
+        UIView.animate(withDuration: 0.4, delay: 0.4, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
+            self.crossButton.transform = CGAffineTransform.identity
         }, completion: nil)
         
     }
