@@ -48,8 +48,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         })
-        mapView.showsScale = true
+        
+        
         mapView.showsCompass = true
+        mapView.showsScale = true
         mapView.showsTraffic = true
     }
     
