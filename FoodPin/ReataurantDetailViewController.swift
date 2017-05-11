@@ -34,13 +34,13 @@ class ReataurantDetailViewController: UIViewController, UITableViewDataSource, U
         performSegue(withIdentifier: "showMap", sender: self)
     }
 
-    var restaurant:Restaurant!
+    var restaurant:RestaurantMO!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        restaurantImageView.image = UIImage (named: restaurant.image)
+        restaurantImageView.image = UIImage (data: restaurant.image as! Data)
         tableView.backgroundColor = UIColor(colorLiteralRed: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.2)
         
         tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
@@ -53,7 +53,7 @@ class ReataurantDetailViewController: UIViewController, UITableViewDataSource, U
         mapView.addGestureRecognizer(tapGeatureRecognizer)
         
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(restaurant.location, completionHandler: {
+        geoCoder.geocodeAddressString(restaurant.location!, completionHandler: {
             placemarks, error in
             if error != nil {
                 print(error as Any)
